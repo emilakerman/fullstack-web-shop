@@ -13,12 +13,12 @@ interface ItemProps {
 
 const ItemCard: React.FC<ItemProps> = ({ item }) => {
   return (
-    <div className="max-w-sm rounded overflow-hidden bg-gray-0">
+    <div className="max-w-sm rounded-xl overflow-hidden bg-gray-0 hover:shadow-lg p-4">
       <div className="">
         <img
           src={`http://localhost:5555/${item.image}`}
           alt="Item Image"
-          className="w-full h-80 object-cover object-center bg-gray-200"
+          className="w-full h-full object-cover object-center bg-gray-200"
         />
         <div className="py-3">
           <div className="text-black">{item.title}</div>

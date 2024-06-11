@@ -1,4 +1,5 @@
 import React from "react";
+import { Link } from "react-router-dom";
 import axios from "axios";
 import { useState, useEffect } from "react";
 import ItemCard from "./components/ItemCard";
@@ -29,8 +30,8 @@ const App: React.FC = () => {
     );
   }
   return (
-    <div className="flex justify-center items-center min-h-screen bg-gray-0 py-10">
-      <div className="grid gap-8 grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-3 xl:grid-cols-3">
+    <div className="flex justify-center items-center min-h-screen bg-gray-0 py-10 mx-10">
+      <div className="grid gap-8 grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-3 xl:grid-cols-4">
         {items.map((item: any) => (
           <ItemCard key={item._id} item={item} />
         ))}
