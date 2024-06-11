@@ -9,6 +9,8 @@ const app = express();
 // Middleware for parsing request body (json).
 app.use(express.json());
 
+app.use('/uploads', express.static('uploads'));
+
 // Middleware for handling CORS policy.
 app.use(cors());
 

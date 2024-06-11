@@ -9,6 +9,7 @@ const EditItem = () => {
   const [title, setTitle]: any = useState("");
   const [availability, setAvailability]: any = useState({ availability: 1 });
   const [category, setCategory]: any = useState("");
+  const [image, setImage] = useState("");
   const [loading, setLoading] = useState(false);
   const navigate = useNavigate();
   const { id } = useParams();
@@ -21,6 +22,7 @@ const EditItem = () => {
         setPrice(response.data.price);
         setAvailability(response.data.availability);
         setCategory(response.data.category);
+        setImage(response.data.image);
         setLoading(false);
       })
       .catch((error: any) => {
@@ -28,16 +30,24 @@ const EditItem = () => {
         setLoading(false);
       });
   }, []);
+  const handleImageChange = (e: any) => {
+    setImage(e.target.files[0]);
+  };
   const handleEditItem = async () => {
-    const data = {
-      title,
-      price,
-      availability,
-      category,
-    };
+    const formData = new FormData();
+    formData.append("title", title);
+    formData.append("price", price);
+    formData.append("availability", availability);
+    formData.append("category", category);
+    formData.append("image", image);
+
     setLoading(true);
     await axios
-      .put(`http://localhost:5555/items/${id}`, data)
+      .put(`http://localhost:5555/items/${id}`, formData, {
+        headers: {
+          "Content-Type": "multipart/form-data",
+        },
+      })
       .then(() => {
         setLoading(false);
         navigate("/");
@@ -87,6 +97,14 @@ const EditItem = () => {
             value={availability}
             onChange={(e) => setAvailability(e.target.value)}
             className="border-2 border-gray-500 px-4 py-2 w-full text-black"
+          />
+        </div>
+        <div className="my-4">
+          <label className="text-xl mr-4 text-gray-500">Image</label>
+          <input
+            type="file"
+            onChange={handleImageChange}
+            className="border-2 border-gray-500 px-4 py-2  w-full text-black"
           />
         </div>
         <button className="p-2 bg-sky-800 m-8" onClick={handleEditItem}>

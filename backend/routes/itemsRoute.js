@@ -1,13 +1,15 @@
 import express from "express";
 import { Item } from "../models/itemModel.js";
+import multer from 'multer';
 
 const router = express.Router();
+const upload = multer({ dest: 'uploads/' });
 
 
 // Create a new item with JSON data.
-  router.post('/', async (req, res) => {
-    try {
-      if (!req.body.title || !req.body.price || !req.body.availability || !req.body.category) {
+router.post('/', upload.single('image'), async (req, res) => {
+  try {
+      if (!req.body.title || !req.body.price || !req.body.availability || !req.body.category || !req.file) {
         return res.status(400).send({ message: 'All fields are required' });
       }
       const newItem = ({
@@ -15,6 +17,7 @@ const router = express.Router();
         price: req.body.price,
         availability: req.body.availability,
         category: req.body.category,
+        image: req.file.path,
       });
       const item = await Item.create(newItem);
       return res.status(201).send(item);
@@ -48,22 +51,23 @@ const router = express.Router();
   });
   
   // Update item by id.
-  router.put('/:id', async (req, res) => {
+  router.put('/:id', upload.single('image'), async (req, res) => {
     try {
-      if (!req.body.title || !req.body.price || !req.body.availability || !req.body.category) {
-        return res.status(400).send({ message: 'All fields are required' });
-      }
       const { id } = req.params;
-      const result = await Item.findByIdAndUpdate(id, req.body);
+      const updateData = { ...req.body };
+      if (req.file) {
+        updateData.image = req.file.path;  // Update the image path if a new image is uploaded
+      }
+      const result = await Item.findByIdAndUpdate(id, updateData, { new: true });
       if (!result) {
         return res.status(404).send({ message: 'Item not found' });
       }
-      const updatedItem = { ...result._doc, ...req.body };
-      return res.status(200).send(updatedItem);
+      return res.status(200).send(result);
     } catch (error) {
-      console.log(error);
+      console.error(error);
       res.status(500).send({ message: error.message });
-    }});
+    }
+  });
   
   // Delete item by id.
   router.delete('/:id', async (req, res) => {

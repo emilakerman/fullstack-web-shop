@@ -7,6 +7,7 @@ interface ItemProps {
     category: string;
     availability: number;
     price: number;
+    image: string;
   };
 }
 
@@ -15,7 +16,7 @@ const ItemCard: React.FC<ItemProps> = ({ item }) => {
     <div className="max-w-sm rounded overflow-hidden bg-gray-0">
       <div className="">
         <img
-          src="https://static.wikia.nocookie.net/sonic/images/8/80/Nintendo_GameCube.png"
+          src={`http://localhost:5555/${item.image}`}
           alt="Item Image"
           className="w-full h-80 object-cover object-center bg-gray-200"
         />
