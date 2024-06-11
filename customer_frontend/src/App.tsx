@@ -29,7 +29,7 @@ const App: React.FC = () => {
     );
   }
   return (
-    <div className="flex justify-center items-center min-h-screen bg-gray-900 py-10">
+    <div className="flex justify-center items-center min-h-screen bg-gray-0 py-10">
       <div className="grid gap-8 grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-3 xl:grid-cols-3">
         {items.map((item: any) => (
           <ItemCard key={item._id} item={item} />

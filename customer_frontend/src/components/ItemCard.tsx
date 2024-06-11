@@ -6,33 +6,27 @@ interface ItemProps {
     title: string;
     category: string;
     availability: number;
+    price: number;
   };
 }
 
 const ItemCard: React.FC<ItemProps> = ({ item }) => {
   return (
-    <div className="max-w-sm rounded overflow-hidden shadow-lg bg-gray-600">
-      <div className="px-6 py-4">
+    <div className="max-w-sm rounded overflow-hidden bg-gray-0">
+      <div className="">
         <img
-          src="https://i5.walmartimages.com/seo/Restored-Nintendo-Gamecube-Game-Console-Platinum-with-Controller-and-Cables-Refurbished_1577430e-3038-4cbf-a545-6bf8cbfb165e_1.4221efd3f903a904753156e2441d66ef.jpeg"
+          src="https://static.wikia.nocookie.net/sonic/images/8/80/Nintendo_GameCube.png"
           alt="Item Image"
-          className="h-64 w-full object-cover object-center"
+          className="w-full h-80 object-cover object-center bg-gray-200"
         />
-        <div className="font-bold text-xl mb-2 text-white py-3">
-          {item.title}
+        <div className="py-3">
+          <div className="text-black">{item.title}</div>
+          <p className="text-black text-base">{item.category}</p>
+          <p className="text-black text-base mb-1 my-1">{item.price} kr</p>
+          <p className="text-black text-base">
+            Availability: {item.availability}
+          </p>
         </div>
-        <p className="text-white text-base">{item.category}</p>
-        <p className="text-white text-base">
-          Availability: {item.availability}
-        </p>
-      </div>
-      <div className="flex justify-between px-4 pt-4 pb-4">
-        <span className="inline-block bg-purple-200 rounded-full px-3 py-1 text-sm font-semibold text-gray-700 mr-2 mb-2">
-          {item.category}
-        </span>
-        <span className="bg-gray-200 rounded-full px-3 py-1 text-sm font-semibold text-gray-700 mr-2 mb-2">
-          <button>Add to cart</button>
-        </span>
       </div>
     </div>
   );
