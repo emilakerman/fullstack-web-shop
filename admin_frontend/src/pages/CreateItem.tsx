@@ -9,18 +9,28 @@ const CreateItem = () => {
   const [title, setTitle]: any = useState("");
   const [availability, setAvailability]: any = useState({ availability: 1 });
   const [category, setCategory]: any = useState("");
+  const [image, setImage] = useState("");
   const [loading, setLoading] = useState(false);
   const navigate = useNavigate();
+  const handleImageChange = (e: any) => {
+    setImage(e.target.files[0]);
+  };
+
   const handleSaveItem = async () => {
-    const data = {
-      title,
-      price,
-      availability,
-      category,
-    };
+    const formData = new FormData();
+    formData.append("title", title);
+    formData.append("price", price);
+    formData.append("availability", availability);
+    formData.append("category", category);
+    formData.append("image", image);
+
     setLoading(true);
     await axios
-      .post("http://localhost:5555/items", data)
+      .post("http://localhost:5555/items", formData, {
+        headers: {
+          "Content-Type": "multipart/form-data",
+        },
+      })
       .then(() => {
         setLoading(false);
         navigate("/");
@@ -69,6 +79,14 @@ const CreateItem = () => {
             type="number"
             value={availability}
             onChange={(e) => setAvailability(e.target.value)}
+            className="border-2 border-gray-500 px-4 py-2  w-full text-black"
+          />
+        </div>
+        <div className="my-4">
+          <label className="text-xl mr-4 text-gray-500">Image</label>
+          <input
+            type="file"
+            onChange={handleImageChange}
             className="border-2 border-gray-500 px-4 py-2  w-full text-black"
           />
         </div>
