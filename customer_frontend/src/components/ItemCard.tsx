@@ -1,4 +1,5 @@
 import React from "react";
+import AddToCartIcon from "./AddToCartIcon";
 
 interface ItemProps {
   item: {
@@ -24,9 +25,12 @@ const ItemCard: React.FC<ItemProps> = ({ item }) => {
           <div className="text-black">{item.title}</div>
           <p className="text-black text-base">{item.category}</p>
           <p className="text-black text-base mb-1 my-1">{item.price} kr</p>
-          <p className="text-black text-base">
-            Availability: {item.availability}
-          </p>
+          <div className="flex justify-between items-center">
+            <p className="text-black text-base">
+              Availability: {item.availability}
+            </p>
+            <AddToCartIcon />
+          </div>
         </div>
       </div>
     </div>
