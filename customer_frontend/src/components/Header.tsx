@@ -31,6 +31,11 @@ const Header: React.FC = () => {
         <nav>
           <ul className="mt-2 mb-2 flex flex-col gap-2 mb-0 mt-0 lg:flex-row md:flex-row items-center gap-6 font-fjalla">
             <li>
+              <a href="" className="hover:text-red-500 pointer-events-none">
+                ◈
+              </a>
+            </li>
+            <li>
               <a href="/games" className="hover:text-red-500">
                 GAMES
               </a>
@@ -48,6 +53,11 @@ const Header: React.FC = () => {
             <li>
               <a href="/contact" className="hover:text-red-500">
                 CONTACT
+              </a>
+            </li>
+            <li>
+              <a href="" className="hover:text-red-500 pointer-events-none">
+                ◈
               </a>
             </li>
           </ul>
