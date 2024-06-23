@@ -3,7 +3,6 @@ import Logo from "./logo.png";
 
 // TODO: Replace the logo with my own.
 // TODO: Replace the font with someone else.
-// TODO: Add a hamburger menu here for mobile.
 
 const Header: React.FC = () => {
   const [isNavOpen, setIsNavOpen] = useState(false);
