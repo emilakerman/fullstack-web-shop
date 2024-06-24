@@ -4,6 +4,7 @@ import { ShoppingCart } from "lucide-react";
 
 const Header: React.FC = () => {
   const [isNavOpen, setIsNavOpen] = useState(false);
+  const [isShoppingCartOpen, setIsShoppingCartOpen] = useState(false);
 
   return (
     <div>
@@ -18,7 +19,10 @@ const Header: React.FC = () => {
           <span className="block h-0.5 w-8 bg-white"></span>
         </div>
         <img src={Logo} alt="Company Logo" className="py-3 h-20" />
-        <div className="flex items-center">
+        <div
+          className="flex items-center"
+          onClick={() => setIsShoppingCartOpen((prev) => !prev)}
+        >
           <ShoppingCart />
         </div>
       </div>
@@ -60,6 +64,30 @@ const Header: React.FC = () => {
                 href=""
                 className="hover:text-red-500"
                 onClick={() => setIsNavOpen((prev) => !prev)}
+              >
+                CLOSE
+              </a>
+            </li>
+          </ul>
+        </nav>
+      </div>
+      <div
+        className={`fixed top-0 right-0 h-full bg-navHeader text-white w-64 transform ${
+          isShoppingCartOpen ? "translate-x-0" : "translate-x-full"
+        } transition-transform duration-300 ease-in-out`}
+      >
+        <nav>
+          <ul className="mt-2 mb-2 flex flex-col gap-2 p-4">
+            <li>
+              <a href="/games" className="hover:text-red-500">
+                ITEMS
+              </a>
+            </li>
+            <li>
+              <a
+                href=""
+                className="hover:text-red-500"
+                onClick={() => setIsShoppingCartOpen((prev) => !prev)}
               >
                 CLOSE
               </a>
