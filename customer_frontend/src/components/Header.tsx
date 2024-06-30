@@ -1,6 +1,7 @@
 import { useState } from "react";
 import Logo from "./logo.png";
 import { ShoppingCart } from "lucide-react";
+import ShoppingCartMenu from "./ShoppingCart";
 
 const Header: React.FC = () => {
   const [isNavOpen, setIsNavOpen] = useState(false);
@@ -71,31 +72,10 @@ const Header: React.FC = () => {
           </ul>
         </nav>
       </div>
-      <div
-        className={`fixed top-0 right-0 h-full bg-navHeader text-white w-64 transform ${
-          isShoppingCartOpen ? "translate-x-0" : "translate-x-full"
-        } transition-transform duration-300 ease-in-out`}
-      >
-        <nav>
-          <ul className="mt-2 mb-2 flex flex-col gap-2 p-4">
-            <li>
-              <a href="/games" className="hover:text-red-500">
-                ITEMS
-              </a>
-            </li>
-            <li>
-              <a
-                href=""
-                className="hover:text-red-500"
-                onClick={() => setIsShoppingCartOpen((prev) => !prev)}
-              >
-                CLOSE
-              </a>
-            </li>
-          </ul>
-        </nav>
-      </div>
-
+      <ShoppingCartMenu
+        bool={isShoppingCartOpen}
+        setter={setIsShoppingCartOpen}
+      />
       <header
         className="hidden
         bg-navHeader text-white p-4 lg:flex md:flex lg:justify-center md:justify-center"
