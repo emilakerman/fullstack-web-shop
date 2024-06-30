@@ -6,7 +6,7 @@ interface ShoppingCartProps {
 const ShoppingCartMenu: React.FC<ShoppingCartProps> = ({ bool, setter }) => {
   return (
     <div
-      className={`fixed top-0 right-0 h-full bg-navHeader text-white w-64 transform ${
+      className={`fixed top-0 right-0 h-full bg-white text-white w-64 transform ${
         bool ? "translate-x-0" : "translate-x-full"
       } transition-transform duration-300 ease-in-out`}
     >
@@ -15,7 +15,7 @@ const ShoppingCartMenu: React.FC<ShoppingCartProps> = ({ bool, setter }) => {
           <li>
             <a
               href=""
-              className="hover:text-red-500"
+              className="hover:text-red-500 text-black"
               onClick={() => setter((prev: any) => !prev)}
             >
               CLOSE
